@@ -1,7 +1,8 @@
 use std::path::Path;
 
 fn main() {
-    let socket = Path::new("/var/run/ubus.sock");
+    // TODO: get from build variable - update to latest though.
+    let socket = Path::new("/var/run/ubus/ubus.sock");
 
     let mut connection = match ubus::Connection::connect(&socket) {
         Ok(connection) => connection,
@@ -10,6 +11,7 @@ fn main() {
             return;
         }
     };
+
     connection
         .lookup(
             |obj| {
